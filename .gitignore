@@ -1,0 +1,7 @@
+# Live trader state, run logs, cron log (generated at runtime)
+trade/runtime/
+
+# Python
+__pycache__/
+*.py[cod]
+.env

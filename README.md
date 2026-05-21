@@ -43,11 +43,11 @@ fng_trading/
 └── trade/                    # 實盤
     ├── binance_futures_trader.py   # Binance 合約 API（純 requests）
     ├── fng_daily_trader.py         # 每日主程式
-    ├── run_logging.py              # jsonl / 終端摘要與帳戶快照
+    ├── run_logging.py              # 執行日誌 / 終端摘要與帳戶快照
     ├── run_fng_daily_cron.sh       # Cron 包裝腳本
     └── runtime/                    # 狀態、日誌（執行時產生）
         ├── fng_daily_state.json
-        ├── fng_daily_runs.jsonl
+        ├── fng_daily_runs.log
         └── fng_cron.log
 ```
 
@@ -238,7 +238,7 @@ sequenceDiagram
 4. **先平倉**：對現有 LONG/SHORT 持倉做「全量限價 → IOC → 市價」流程  
 5. 若 `should_trade` 為 false → `NO_SIGNAL`，結束  
 6. 若應交易 → **全量限價 → IOC 開倉**，再依**實際持倉量**掛止盈／止損  
-7. 寫入 `fng_daily_state.json` 與 `fng_daily_runs.jsonl`  
+7. 寫入 `fng_daily_state.json` 與 `fng_daily_runs.log`  
 
 ---
 
@@ -351,7 +351,7 @@ bn_api_secret=你的Binance_Secret
 | `FNG_LOOKBACK_DAYS` | `120` | 拉恐慌指數回溯天數 |
 | `FNG_SIGNAL_DAY` | 未設 | 指定 `YYYY-MM-DD` 測試該日訊號 |
 | `FNG_IGNORE_STATE` | `0` | `1`=忽略同日防重複 |
-| `FNG_RUNTIME_DIR` | `trade/runtime` | 狀態與 jsonl 日誌目錄 |
+| `FNG_RUNTIME_DIR` | `trade/runtime` | 狀態與執行日誌目錄 |
 | `FNG_RUN_MODE` | `once` | `once` 跑一次；`schedule` 內建等 UTC 0 點 |
 | `FNG_BINANCE_BASE_URL` | `https://fapi.binance.com` | 可改 testnet |
 
@@ -469,30 +469,21 @@ bash fng_trading/trade/run_fng_daily_cron.sh
 }
 ```
 
-### `trade/runtime/fng_daily_runs.jsonl`
+### `trade/runtime/fng_daily_runs.log`
 
-每次執行一行 JSON（完整紀錄），並在終端／`fng_cron.log` 印出可讀摘要。
+每次執行追加一段**可讀文字摘要**（與終端 `summary_lines` 相同），包含：
 
-| 區塊 | 說明 |
-|------|------|
-| `config` | 當次執行參數（symbol、dry_run、IOC/限價等待等） |
-| `state_before` / `state_after` | 狀態檔快照 |
-| `account_at_start` | 排程開始：USDT 餘額、持倉、`open_orders`、`algo_open_orders`、mark price |
-| `account_after_close` | 平倉後帳戶 |
-| `account_after_trade` | 開倉／掛 TP-SL 後帳戶 |
-| `account_at_end` | 本次最終帳戶（等同最後一個有值的階段） |
-| `signal` / `signal_summary` | 恐慌指數訊號（完整 + 摘要） |
-| `close` / `close_summary` | 平倉各 leg（pre-limit / IOC / 市價） |
-| `trade` / `trade_summary` | 開倉、`entry` leg、成交、`take_profit_order`/`stop_loss_order`（含 `algoId`） |
-| `planned_entry` | 計畫進場價、數量、TP/SL |
-| `action` / `action_detail` | 最終動作與該 action 應看的欄位 |
-| `summary_lines` | 人類可讀多行摘要（與 cron.log 一致） |
+- 執行時間、`action`、設定（symbol、dry_run、IOC 參數）
+- 訊號（score、side、TP/SL）
+- 狀態檔 before/after
+- 帳戶各階段（start / after_close / after_trade / end）：餘額、持倉、掛單、algo TP/SL
+- 平倉／開倉 leg 摘要
 
-無 API key 的 `DRY_RUN`：`account_*` 的 `source` 為 `state_file`，僅能從狀態檔推斷追蹤持倉。
+無 API key 的 `DRY_RUN`：帳戶段落來自 `state_file`，僅能從狀態檔推斷追蹤持倉。
 
 ### `trade/runtime/fng_cron.log`
 
-Cron 標準輸出：先印 **`summary_lines` 可讀摘要**，再印完整 JSON。
+Cron 標準輸出：可讀摘要 + 完整 JSON（除錯用）。日常查閱建議看 `fng_daily_runs.log`。
 
 ---
 

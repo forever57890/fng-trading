@@ -15,7 +15,6 @@ Cron (UTC 00:00): see ``fng_trading/trade/run_fng_daily_cron.sh``.
 
 from __future__ import annotations
 
-import json
 import os
 import sys
 import time
@@ -38,7 +37,14 @@ from fng_trading.trade.run_logging import (
     build_state_account_snapshot,
     capture_account_snapshot,
     enrich_run_record,
+    format_run_log_block,
     print_run_output,
+)
+from fng_trading.trade.runtime_io import (
+    ensure_runtime_dir,
+    safe_append_log,
+    safe_read_json,
+    safe_write_json,
 )
 
 _TRADE_ROOT = Path(__file__).resolve().parent
@@ -56,7 +62,7 @@ SIGNAL_DAY_OVERRIDE = os.getenv("FNG_SIGNAL_DAY")  # e.g. "2026-05-15" for backt
 IGNORE_STATE = os.getenv("FNG_IGNORE_STATE", "0") == "1"
 RUNTIME_DIR = Path(os.getenv("FNG_RUNTIME_DIR", str(_TRADE_ROOT / "runtime")))
 STATE_FILE = RUNTIME_DIR / "fng_daily_state.json"
-LOG_FILE = RUNTIME_DIR / "fng_daily_runs.jsonl"
+LOG_FILE = RUNTIME_DIR / "fng_daily_runs.log"
 
 
 def utc_now() -> datetime:
@@ -64,20 +70,37 @@ def utc_now() -> datetime:
 
 
 def load_state() -> dict:
-    if not STATE_FILE.exists():
-        return {}
-    return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    return safe_read_json(STATE_FILE)
 
 
 def save_state(state: dict) -> None:
-    RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
-    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    safe_write_json(STATE_FILE, state)
 
 
 def append_run_log(record: dict) -> None:
-    RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
-    with LOG_FILE.open("a", encoding="utf-8") as f:
-        f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    safe_append_log(LOG_FILE, format_run_log_block(record))
+
+
+def log_fatal_error(exc: Exception) -> None:
+    """Persist and print a fatal run error (best-effort)."""
+    err: Dict[str, Any] = {
+        "run_at": utc_now().isoformat(),
+        "action": "ERROR",
+        "error": str(exc),
+        "config": build_config_snapshot(),
+    }
+    try:
+        ensure_runtime_dir(RUNTIME_DIR)
+        trader = try_create_trader()
+        err["account_at_start"] = capture_account_snapshot(
+            trader, SYMBOL, state=load_state(), phase="error"
+        )
+        enrich_run_record(err)
+        append_run_log(err)
+        print_run_output(err)
+    except Exception as log_exc:
+        print(f"Fatal error: {exc}", file=sys.stderr)
+        print(f"Failed to write run log: {log_exc}", file=sys.stderr)
 
 
 def _state_snapshot(state: dict) -> dict:
@@ -214,6 +237,7 @@ def _apply_close_to_state(new_state: dict, close_result: dict) -> None:
 
 
 def run_once() -> dict:
+    ensure_runtime_dir(RUNTIME_DIR)
     run_at = utc_now().isoformat()
     trader = try_create_trader()
     state = load_state()
@@ -442,19 +466,7 @@ def run_scheduler_loop() -> None:
         try:
             run_once()
         except Exception as exc:
-            err: Dict[str, Any] = {
-                "run_at": utc_now().isoformat(),
-                "action": "ERROR",
-                "error": str(exc),
-                "config": build_config_snapshot(),
-            }
-            trader = try_create_trader()
-            err["account_at_start"] = capture_account_snapshot(
-                trader, SYMBOL, state=load_state(), phase="error"
-            )
-            enrich_run_record(err)
-            append_run_log(err)
-            print_run_output(err)
+            log_fatal_error(exc)
 
 
 def main() -> int:
@@ -466,7 +478,7 @@ def main() -> int:
         run_once()
         return 0
     except Exception as exc:
-        print(f"Fatal error: {exc}", file=sys.stderr)
+        log_fatal_error(exc)
         return 1
 
 

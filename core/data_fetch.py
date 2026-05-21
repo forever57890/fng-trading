@@ -1,6 +1,7 @@
 import json
 import time
 from datetime import datetime
+from pathlib import Path
 
 import pandas as pd
 import requests
@@ -22,9 +23,22 @@ def fetch_fear_greed_chart(start: int, end: int, convert_id: int):
 
 
 def load_fear_greed_from_file(path: str):
-    with open(path, encoding="utf-8") as f:
-        raw_data = json.load(f)
-    return raw_data["data"]["dataList"]
+    file_path = Path(path)
+    if not file_path.exists():
+        raise FileNotFoundError(
+            f"Fear & Greed JSON not found: {file_path.resolve()}. "
+            "Run: python -m fng_trading.backtest.fear_greed_chart_fetch"
+        )
+    try:
+        raw_data = json.loads(file_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Invalid JSON in {file_path}: {exc}") from exc
+    try:
+        return raw_data["data"]["dataList"]
+    except (KeyError, TypeError) as exc:
+        raise ValueError(
+            f"Unexpected JSON shape in {file_path}; expected data.dataList"
+        ) from exc
 
 
 def fetch_binance_futures_klines(symbol: str, interval: str, start_ms: int, end_ms: int, limit: int = 1500):

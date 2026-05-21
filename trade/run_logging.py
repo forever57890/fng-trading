@@ -286,7 +286,7 @@ def _fmt_algo_orders(orders: List[dict]) -> str:
 
 
 def build_action_detail(result: dict) -> Dict[str, Any]:
-    """Per-action fields useful when scanning jsonl."""
+    """Per-action fields useful when scanning run logs."""
     action = result.get("action", "")
     detail: Dict[str, Any] = {"action": action}
 
@@ -449,7 +449,19 @@ def enrich_run_record(result: dict) -> dict:
     return result
 
 
-def print_run_output(result: dict, *, include_json: bool = True) -> None:
+def format_run_log_block(result: dict) -> str:
+    """Human-readable block appended to fng_daily_runs.log."""
+    lines = result.get("summary_lines") or build_run_summary_lines(result)
+    return "\n".join(lines) + "\n\n"
+
+
+def _default_include_json() -> bool:
+    return os.getenv("FNG_PRINT_JSON", "1") == "1"
+
+
+def print_run_output(result: dict, *, include_json: bool | None = None) -> None:
+    if include_json is None:
+        include_json = _default_include_json()
     for line in result.get("summary_lines") or build_run_summary_lines(result):
         print(line)
     if include_json:
