@@ -1,35 +1,70 @@
+from __future__ import annotations
+
+from typing import Optional
+
 import pandas as pd
 
+# --- fees ---
+FEE_RATE = 0.0001  # 0.01%
 
-FEE_RATE = 0.0003  # 0.03%
+# --- position sizing ---
+QTY_BTC = 1
+POSITION_TYPE = 3
+
+# --- entry zones (score_diff = today - yesterday) ---
+LONG_DIFF_MIN = 4
+LONG_DIFF_MAX = 20
+SHORT_DIFF_MIN = -20
+SHORT_DIFF_MAX = -4
+
+# --- take-profit / stop-loss by position_type ---
+TAKE_PROFIT_RATE_BY_TYPE = {1: 0.04, 2: 0.04, 3: 0.04, 4: 0.02}
+STOP_LOSS_RATE_BY_TYPE = {1: 0.06, 2: 0.06, 3: 0.06, 4: 0.06}
+
+# --- MA-adjusted take-profit overrides (use_ma_tp=True) ---
+MA_TP_LONG_LOW_VS_MA = 0.06   # entry below MA, LONG
+MA_TP_SHORT_HIGH_VS_MA = 0.03  # entry above MA, SHORT
+MA_DAYS_BACKTEST = 90
 
 
 def get_position(score_diff: float):
     if pd.isna(score_diff):
         return None, 0, None
 
-    if 4 <= score_diff <= 10:
-        return "LONG", 3, 3
+    if LONG_DIFF_MIN <= score_diff <= LONG_DIFF_MAX:
+        return "LONG", QTY_BTC, POSITION_TYPE
 
-    elif 10 <= score_diff <= 16:
-        return "LONG", 3, 3
-
-    if -20 <= score_diff <= -4:
-        return "SHORT", 3, 3
-    elif score_diff < -20:
-        return "SHORT", 3, 3
+    if SHORT_DIFF_MIN <= score_diff <= SHORT_DIFF_MAX:
+        return "SHORT", QTY_BTC, POSITION_TYPE
+    if score_diff < SHORT_DIFF_MIN:
+        return "SHORT", QTY_BTC, POSITION_TYPE
 
     return None, 0, None
 
 
-def get_take_profit_rate(position_type: int):
-    tp_map = {1: 0.04, 2: 0.04, 3: 0.04, 4: 0.02}
-    return tp_map.get(int(position_type or 0), 0.0)
+def get_take_profit_rate(position_type: int) -> float:
+    return TAKE_PROFIT_RATE_BY_TYPE.get(int(position_type or 0), 0.0)
 
 
-def get_stop_loss_rate(position_type: int):
-    sl_map = {1: 0.06, 2: 0.06, 3: 0.06, 4: 0.06}
-    return sl_map.get(int(position_type or 0), 0.0)
+def get_stop_loss_rate(position_type: int) -> float:
+    return STOP_LOSS_RATE_BY_TYPE.get(int(position_type or 0), 0.0)
+
+
+def resolve_take_profit_rate(
+    position_type: int,
+    side: Optional[str],
+    ma_signal: Optional[int],
+    *,
+    use_ma_tp: bool = False,
+) -> float:
+    tp_rate = get_take_profit_rate(position_type)
+    if not use_ma_tp or side is None or ma_signal is None:
+        return tp_rate
+    if ma_signal == 1 and side == "LONG":
+        return MA_TP_LONG_LOW_VS_MA
+    if ma_signal == 0 and side == "SHORT":
+        return MA_TP_SHORT_HIGH_VS_MA
+    return tp_rate
 
 
 def get_ma_signal_at(kline_df: pd.DataFrame, timestamp: pd.Timestamp, entry_price: float, days: int = 30):
@@ -63,17 +98,16 @@ def apply_trade_logic(trades: pd.DataFrame, kline_df: pd.DataFrame, use_ma_tp: b
         k_low = float(holding["low"].min()) if not holding.empty else float(entry)
 
         if use_ma_tp:
-            ma_signal, ma, close_price = get_ma_signal_at(kline_df, entry_time, entry, days=90)
+            ma_signal, ma, close_price = get_ma_signal_at(
+                kline_df, entry_time, entry, days=MA_DAYS_BACKTEST
+            )
         else:
             ma_signal, ma, close_price = None, None, None
-        tp_rate = get_take_profit_rate(position_type)
-        if use_ma_tp:
-            if ma_signal == 1 and side == "LONG":
-                tp_rate = 0.06
-            elif ma_signal == 0 and side == "SHORT":
-                tp_rate = 0.03
 
-        sl_rate = get_stop_loss_rate(qty)
+        tp_rate = resolve_take_profit_rate(
+            position_type, side, ma_signal, use_ma_tp=use_ma_tp
+        )
+        sl_rate = get_stop_loss_rate(position_type)
         tp_price = entry * (1 + tp_rate) if side == "LONG" else entry * (1 - tp_rate)
         sl_price = entry * (1 - sl_rate) if side == "LONG" else entry * (1 + sl_rate)
 

@@ -1,28 +1,28 @@
 [
     {
         "side":"LONG",
-        "trades":71,
+        "trades":73,
         "wins":43,
-        "win_rate":0.6056338028,
+        "win_rate":0.5890410959,
         "tp_hits":5,
-        "tp_hit_rate":0.0704225352,
-        "gross_pnl":105253.3578,
-        "fees":12076.66061334,
-        "net_pnl":93176.69718666,
-        "avg_net_pnl":1312.3478476994,
-        "avg_net_return":0.0060127711
+        "tp_hit_rate":0.0684931507,
+        "gross_pnl":29164.1274,
+        "fees":1380.75665674,
+        "net_pnl":27783.37074326,
+        "avg_net_pnl":380.5941197707,
+        "avg_net_return":0.0053758358
     },
     {
         "side":"SHORT",
         "trades":80,
-        "wins":49,
-        "win_rate":0.6125,
+        "wins":50,
+        "win_rate":0.625,
         "tp_hits":18,
         "tp_hit_rate":0.225,
-        "gross_pnl":145164.3324000001,
-        "fees":13659.45284628,
-        "net_pnl":131504.8795537201,
-        "avg_net_pnl":1643.8109944215,
-        "avg_net_return":0.0062013565
+        "gross_pnl":48388.1108,
+        "fees":1517.71698292,
+        "net_pnl":46870.39381708,
+        "avg_net_pnl":585.8799227135,
+        "avg_net_return":0.0065999966
     }
 ]

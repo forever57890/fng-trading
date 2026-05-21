@@ -4,8 +4,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from fng_trading.core.data_fetch import fetch_binance_futures_klines, load_fear_greed_from_file
-from fng_trading.core.strategy_logic import apply_trade_logic, get_position
+from core.data_fetch import fetch_binance_futures_klines, load_fear_greed_from_file
+from core.strategy_logic import apply_trade_logic, get_position
 
 SYMBOL = "BTCUSDT"
 INTERVAL = "1d"

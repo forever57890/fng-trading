@@ -11,7 +11,7 @@ from fng_trading.core.strategy_logic import (
     get_ma_signal_at,
     get_position,
     get_stop_loss_rate,
-    get_take_profit_rate,
+    resolve_take_profit_rate,
 )
 
 
@@ -58,7 +58,6 @@ def _evaluate_signal_row(
     ts = latest["timestamp"]
 
     side, qty_btc, position_type = get_position(score_diff)
-    tp_rate = get_take_profit_rate(position_type or 0)
     sl_rate = get_stop_loss_rate(position_type or 0)
     ma_signal, ma, _ = None, None, None
 
@@ -66,10 +65,13 @@ def _evaluate_signal_row(
         ma_signal, ma, _ = get_ma_signal_at(
             kline_df, ts, entry_price, days=ma_days
         )
-        if ma_signal == 1 and side == "LONG":
-            tp_rate = 0.06
-        elif ma_signal == 0 and side == "SHORT":
-            tp_rate = 0.03
+
+    tp_rate = resolve_take_profit_rate(
+        position_type or 0,
+        side,
+        ma_signal,
+        use_ma_tp=use_ma_tp and ma_signal is not None,
+    )
 
     tp_price = sl_price = None
     if side == "LONG":
