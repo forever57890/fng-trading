@@ -7404,5 +7404,33 @@
         "taker_buy_base_volume":"54228.551",
         "taker_buy_quote_volume":"4190939125.59660",
         "ignore":"0"
+    },
+    {
+        "open_time":"2026-05-21T00:00:00.000Z",
+        "open":77510.3,
+        "high":78180.0,
+        "low":76696.7,
+        "close":77586.2,
+        "volume":117095.161,
+        "close_time":"2026-05-21T23:59:59.999Z",
+        "quote_volume":"9079126567.90110",
+        "trade_count":2866709,
+        "taker_buy_base_volume":"58038.228",
+        "taker_buy_quote_volume":"4501124501.63080",
+        "ignore":"0"
+    },
+    {
+        "open_time":"2026-05-22T00:00:00.000Z",
+        "open":77586.3,
+        "high":77775.0,
+        "low":77288.0,
+        "close":77744.2,
+        "volume":7187.65,
+        "close_time":"2026-05-22T23:59:59.999Z",
+        "quote_volume":"557314402.44610",
+        "trade_count":238885,
+        "taker_buy_base_volume":"3900.664",
+        "taker_buy_quote_volume":"302466502.58810",
+        "ignore":"0"
     }
 ]

@@ -1,0 +1,17 @@
+# fng_trading — Fear & Greed 策略套件
+# 安裝：pip install -r requirements.txt
+#
+# 模組對應：
+#   pandas, requests     — core（回測、實盤）
+#   matplotlib           — backtest 出圖
+#   python-dotenv        — 可選；未安裝時 env_loader 會手動解析 .env
+
+# --- 共用（core + trade + backtest 資料）---
+pandas>=2.2,<4
+requests>=2.31,<3
+
+# --- 回測（fng_backtest_with_binance_tp 圖表）---
+matplotlib>=3.8,<4
+
+# --- 可選（建議；載入 .env）---
+python-dotenv>=1.0,<2

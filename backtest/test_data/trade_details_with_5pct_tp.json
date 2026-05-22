@@ -1,5 +1,35 @@
 [
     {
+        "timestamp":"2025-01-07T00:00:00.000Z",
+        "normal_exit_time":"2025-01-08T00:00:00.000Z",
+        "prev_score":60.0,
+        "score":66,
+        "score_diff":6.0,
+        "side":"LONG",
+        "qty_btc":1,
+        "position_type":3.0,
+        "btcPrice":102248.85,
+        "take_profit_price":106338.804,
+        "kline_high":102762.1,
+        "kline_low":96153.0,
+        "normal_exit_price":96924.16,
+        "stop_loss_price":96113.919,
+        "ma_signal":null,
+        "ma":null,
+        "ma_entry_price":null,
+        "exit_price":96924.16,
+        "exit_reason":"NORMAL_EXIT",
+        "take_profit_hit":false,
+        "stop_loss_hit":false,
+        "gross_pnl":-5324.69,
+        "fee":19.917301,
+        "net_pnl":-5344.607301,
+        "net_return":-0.0522705859,
+        "win":false,
+        "cum_net_pnl":-5344.607301,
+        "drawdown":0.0
+    },
+    {
         "timestamp":"2025-01-08T00:00:00.000Z",
         "normal_exit_time":"2025-01-09T00:00:00.000Z",
         "prev_score":66.0,
@@ -26,7 +56,7 @@
         "net_pnl":3857.96926464,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":3857.96926464,
+        "cum_net_pnl":-1486.63803636,
         "drawdown":0.0
     },
     {
@@ -56,7 +86,7 @@
         "net_pnl":3783.11107596,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":7641.0803406,
+        "cum_net_pnl":2296.4730396,
         "drawdown":0.0
     },
     {
@@ -86,7 +116,7 @@
         "net_pnl":-2225.069533,
         "net_return":-0.0240562387,
         "win":false,
-        "cum_net_pnl":5416.0108076,
+        "cum_net_pnl":71.4035066,
         "drawdown":-2225.069533
     },
     {
@@ -116,7 +146,7 @@
         "net_pnl":-154.036657,
         "net_return":-0.0016265606,
         "win":false,
-        "cum_net_pnl":5261.9741506,
+        "cum_net_pnl":-82.6331504,
         "drawdown":-2379.10619
     },
     {
@@ -146,7 +176,7 @@
         "net_pnl":3841.6690538,
         "net_return":0.039796,
         "win":true,
-        "cum_net_pnl":9103.6432044,
+        "cum_net_pnl":3759.0359034,
         "drawdown":0.0
     },
     {
@@ -176,7 +206,7 @@
         "net_pnl":-499.583107,
         "net_return":-0.0049707141,
         "win":false,
-        "cum_net_pnl":8604.0600974,
+        "cum_net_pnl":3259.4527964,
         "drawdown":-499.583107
     },
     {
@@ -206,7 +236,7 @@
         "net_pnl":265.486376,
         "net_return":0.0025496903,
         "win":true,
-        "cum_net_pnl":8869.5464734,
+        "cum_net_pnl":3524.9391724,
         "drawdown":-234.096731
     },
     {
@@ -236,7 +266,7 @@
         "net_pnl":-6085.8482525,
         "net_return":-0.060206,
         "win":false,
-        "cum_net_pnl":2783.6982209,
+        "cum_net_pnl":-2560.9090801,
         "drawdown":-6319.9449835
     },
     {
@@ -266,7 +296,7 @@
         "net_pnl":-2499.689405,
         "net_return":-0.0235516738,
         "win":false,
-        "cum_net_pnl":284.0088159,
+        "cum_net_pnl":-5060.5984851,
         "drawdown":-8819.6343885
     },
     {
@@ -296,7 +326,7 @@
         "net_pnl":-328.762334,
         "net_return":-0.0031716161,
         "win":false,
-        "cum_net_pnl":-44.7535181,
+        "cum_net_pnl":-5389.3608191,
         "drawdown":-9148.3967225
     },
     {
@@ -326,7 +356,7 @@
         "net_pnl":4087.0866612,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":4042.3331431,
+        "cum_net_pnl":-1302.2741579,
         "drawdown":-5061.3100613
     },
     {
@@ -356,7 +386,7 @@
         "net_pnl":1007.37531,
         "net_return":0.0097134483,
         "win":true,
-        "cum_net_pnl":5049.7084531,
+        "cum_net_pnl":-294.8988479,
         "drawdown":-4053.9347513
     },
     {
@@ -386,7 +416,7 @@
         "net_pnl":1720.953566,
         "net_return":0.0168057276,
         "win":true,
-        "cum_net_pnl":6770.6620191,
+        "cum_net_pnl":1426.0547181,
         "drawdown":-2332.9811853
     },
     {
@@ -416,7 +446,7 @@
         "net_pnl":3888.0985044,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":10658.7605235,
+        "cum_net_pnl":5314.1532225,
         "drawdown":0.0
     },
     {
@@ -446,7 +476,7 @@
         "net_pnl":-3540.637673,
         "net_return":-0.0349179721,
         "win":false,
-        "cum_net_pnl":7118.1228505,
+        "cum_net_pnl":1773.5155495,
         "drawdown":-3540.637673
     },
     {
@@ -476,7 +506,7 @@
         "net_pnl":1247.921135,
         "net_return":0.01274976,
         "win":true,
-        "cum_net_pnl":8366.0439855,
+        "cum_net_pnl":3021.4366845,
         "drawdown":-2292.716538
     },
     {
@@ -506,7 +536,7 @@
         "net_pnl":-1284.831212,
         "net_return":-0.0131254226,
         "win":false,
-        "cum_net_pnl":7081.2127735,
+        "cum_net_pnl":1736.6054725,
         "drawdown":-3577.54775
     },
     {
@@ -536,7 +566,7 @@
         "net_pnl":-462.8712,
         "net_return":-0.0048148442,
         "win":false,
-        "cum_net_pnl":6618.3415735,
+        "cum_net_pnl":1273.7342725,
         "drawdown":-4040.41895
     },
     {
@@ -566,7 +596,7 @@
         "net_pnl":3639.56272644,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":10257.90429994,
+        "cum_net_pnl":4913.29699894,
         "drawdown":-400.85622356
     },
     {
@@ -596,7 +626,7 @@
         "net_pnl":-645.648249,
         "net_return":-0.0076792622,
         "win":false,
-        "cum_net_pnl":9612.25605094,
+        "cum_net_pnl":4267.64874994,
         "drawdown":-1046.50447256
     },
     {
@@ -626,7 +656,7 @@
         "net_pnl":-5673.18939348,
         "net_return":-0.060194,
         "win":false,
-        "cum_net_pnl":3939.06665746,
+        "cum_net_pnl":-1405.54064354,
         "drawdown":-6719.69386604
     },
     {
@@ -656,7 +686,7 @@
         "net_pnl":3425.69424228,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":7364.76089974,
+        "cum_net_pnl":2020.15359874,
         "drawdown":-3293.99962376
     },
     {
@@ -686,7 +716,7 @@
         "net_pnl":-677.138564,
         "net_return":-0.0074720915,
         "win":false,
-        "cum_net_pnl":6687.62233574,
+        "cum_net_pnl":1343.01503474,
         "drawdown":-3971.13818776
     },
     {
@@ -716,7 +746,7 @@
         "net_pnl":571.050304,
         "net_return":0.0065832702,
         "win":true,
-        "cum_net_pnl":7258.67263974,
+        "cum_net_pnl":1914.06533874,
         "drawdown":-3400.08788376
     },
     {
@@ -746,7 +776,7 @@
         "net_pnl":2057.367898,
         "net_return":0.0255265589,
         "win":true,
-        "cum_net_pnl":9316.04053774,
+        "cum_net_pnl":3971.43323674,
         "drawdown":-1342.71998576
     },
     {
@@ -776,7 +806,7 @@
         "net_pnl":850.88177,
         "net_return":0.0102692334,
         "win":true,
-        "cum_net_pnl":10166.92230774,
+        "cum_net_pnl":4822.31500674,
         "drawdown":-491.83821576
     },
     {
@@ -806,7 +836,7 @@
         "net_pnl":348.079827,
         "net_return":0.0041453664,
         "win":true,
-        "cum_net_pnl":10515.00213474,
+        "cum_net_pnl":5170.39483374,
         "drawdown":-143.75838876
     },
     {
@@ -836,7 +866,7 @@
         "net_pnl":-2725.513749,
         "net_return":-0.0313735605,
         "win":false,
-        "cum_net_pnl":7789.48838574,
+        "cum_net_pnl":2444.88108474,
         "drawdown":-2869.27213776
     },
     {
@@ -866,7 +896,7 @@
         "net_pnl":101.45892,
         "net_return":0.001205483,
         "win":true,
-        "cum_net_pnl":7890.94730574,
+        "cum_net_pnl":2546.34000474,
         "drawdown":-2767.81321776
     },
     {
@@ -896,7 +926,7 @@
         "net_pnl":1424.531625,
         "net_return":0.0165506708,
         "win":true,
-        "cum_net_pnl":9315.47893074,
+        "cum_net_pnl":3970.87162974,
         "drawdown":-1343.28159276
     },
     {
@@ -926,7 +956,7 @@
         "net_pnl":1738.395095,
         "net_return":0.0206088018,
         "win":true,
-        "cum_net_pnl":11053.87402574,
+        "cum_net_pnl":5709.26672474,
         "drawdown":0.0
     },
     {
@@ -956,7 +986,7 @@
         "net_pnl":-2709.896809,
         "net_return":-0.0318135408,
         "win":false,
-        "cum_net_pnl":8343.97721674,
+        "cum_net_pnl":2999.36991574,
         "drawdown":-2709.896809
     },
     {
@@ -986,7 +1016,7 @@
         "net_pnl":-629.328773,
         "net_return":-0.0076293854,
         "win":false,
-        "cum_net_pnl":7714.64844374,
+        "cum_net_pnl":2370.04114274,
         "drawdown":-3339.225582
     },
     {
@@ -1016,7 +1046,7 @@
         "net_pnl":3113.52181932,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":10828.17026306,
+        "cum_net_pnl":5483.56296206,
         "drawdown":-225.70376268
     },
     {
@@ -1046,7 +1076,7 @@
         "net_pnl":-4592.12595336,
         "net_return":-0.060206,
         "win":false,
-        "cum_net_pnl":6236.0443097,
+        "cum_net_pnl":891.4370087,
         "drawdown":-4817.82971604
     },
     {
@@ -1076,7 +1106,7 @@
         "net_pnl":-2957.139102,
         "net_return":-0.035815471,
         "win":false,
-        "cum_net_pnl":3278.9052077,
+        "cum_net_pnl":-2065.7020933,
         "drawdown":-7774.96881804
     },
     {
@@ -1106,7 +1136,7 @@
         "net_pnl":-3795.772957,
         "net_return":-0.047670588,
         "win":false,
-        "cum_net_pnl":-516.8677493,
+        "cum_net_pnl":-5861.4750503,
         "drawdown":-11570.74177504
     },
     {
@@ -1136,7 +1166,7 @@
         "net_pnl":1858.081601,
         "net_return":0.0222779485,
         "win":true,
-        "cum_net_pnl":1341.2138517,
+        "cum_net_pnl":-4003.3934493,
         "drawdown":-9712.66017404
     },
     {
@@ -1166,7 +1196,7 @@
         "net_pnl":-1601.847399,
         "net_return":-0.0187835056,
         "win":false,
-        "cum_net_pnl":-260.6335473,
+        "cum_net_pnl":-5605.2408483,
         "drawdown":-11314.50757304
     },
     {
@@ -1196,7 +1226,7 @@
         "net_pnl":5233.28269478,
         "net_return":0.059794,
         "win":true,
-        "cum_net_pnl":4972.64914748,
+        "cum_net_pnl":-371.95815352,
         "drawdown":-6081.22487826
     },
     {
@@ -1226,7 +1256,7 @@
         "net_pnl":246.098001,
         "net_return":0.0026341041,
         "win":true,
-        "cum_net_pnl":5218.74714848,
+        "cum_net_pnl":-125.86015252,
         "drawdown":-5835.12687726
     },
     {
@@ -1256,7 +1286,7 @@
         "net_pnl":390.32004,
         "net_return":0.0040449781,
         "win":true,
-        "cum_net_pnl":5609.06718848,
+        "cum_net_pnl":264.45988748,
         "drawdown":-5444.80683726
     },
     {
@@ -1286,7 +1316,7 @@
         "net_pnl":-447.736795,
         "net_return":-0.0047470195,
         "win":false,
-        "cum_net_pnl":5161.33039348,
+        "cum_net_pnl":-183.27690752,
         "drawdown":-5892.54363226
     },
     {
@@ -1316,7 +1346,7 @@
         "net_pnl":-286.041284,
         "net_return":-0.0027706673,
         "win":false,
-        "cum_net_pnl":4875.28910948,
+        "cum_net_pnl":-469.31819152,
         "drawdown":-6178.58491626
     },
     {
@@ -1346,7 +1376,7 @@
         "net_pnl":-614.990803,
         "net_return":-0.0058737776,
         "win":false,
-        "cum_net_pnl":4260.29830648,
+        "cum_net_pnl":-1084.30899452,
         "drawdown":-6793.57571926
     },
     {
@@ -1376,7 +1406,7 @@
         "net_pnl":-846.323594,
         "net_return":-0.0079518874,
         "win":false,
-        "cum_net_pnl":3413.97471248,
+        "cum_net_pnl":-1930.63258852,
         "drawdown":-7639.89931326
     },
     {
@@ -1406,7 +1436,7 @@
         "net_pnl":1983.734715,
         "net_return":0.018087641,
         "win":true,
-        "cum_net_pnl":5397.70942748,
+        "cum_net_pnl":53.10212648,
         "drawdown":-5656.16459826
     },
     {
@@ -1436,7 +1466,7 @@
         "net_pnl":-545.268078,
         "net_return":-0.0050827335,
         "win":false,
-        "cum_net_pnl":4852.44134948,
+        "cum_net_pnl":-492.16595152,
         "drawdown":-6201.43267626
     },
     {
@@ -1466,7 +1496,7 @@
         "net_pnl":1630.525907,
         "net_return":0.0154338325,
         "win":true,
-        "cum_net_pnl":6482.96725648,
+        "cum_net_pnl":1138.35995548,
         "drawdown":-4570.90676926
     },
     {
@@ -1496,7 +1526,7 @@
         "net_pnl":-663.443202,
         "net_return":-0.0063795854,
         "win":false,
-        "cum_net_pnl":5819.52405448,
+        "cum_net_pnl":474.91675348,
         "drawdown":-5234.34997126
     },
     {
@@ -1526,7 +1556,7 @@
         "net_pnl":-2836.866501,
         "net_return":-0.0279289598,
         "win":false,
-        "cum_net_pnl":2982.65755348,
+        "cum_net_pnl":-2361.94974752,
         "drawdown":-8071.21647226
     },
     {
@@ -1556,7 +1586,7 @@
         "net_pnl":1205.869185,
         "net_return":0.0115515068,
         "win":true,
-        "cum_net_pnl":4188.52673848,
+        "cum_net_pnl":-1156.08056252,
         "drawdown":-6865.34728726
     },
     {
@@ -1586,7 +1616,7 @@
         "net_pnl":-55.945749,
         "net_return":-0.0005072342,
         "win":false,
-        "cum_net_pnl":4132.58098948,
+        "cum_net_pnl":-1212.02631152,
         "drawdown":-6921.29303626
     },
     {
@@ -1616,7 +1646,7 @@
         "net_pnl":2739.85895,
         "net_return":0.0252089618,
         "win":true,
-        "cum_net_pnl":6872.43993948,
+        "cum_net_pnl":1527.83263848,
         "drawdown":-4181.43408626
     },
     {
@@ -1646,7 +1676,7 @@
         "net_pnl":3156.87055577,
         "net_return":0.029803,
         "win":true,
-        "cum_net_pnl":10029.31049525,
+        "cum_net_pnl":4684.70319425,
         "drawdown":-1024.56353049
     },
     {
@@ -1676,7 +1706,7 @@
         "net_pnl":-305.648884,
         "net_return":-0.0029220156,
         "win":false,
-        "cum_net_pnl":9723.66161125,
+        "cum_net_pnl":4379.05431025,
         "drawdown":-1330.21241449
     },
     {
@@ -1706,7 +1736,7 @@
         "net_pnl":1082.497289,
         "net_return":0.010477631,
         "win":true,
-        "cum_net_pnl":10806.15890025,
+        "cum_net_pnl":5461.55159925,
         "drawdown":-247.71512549
     },
     {
@@ -1736,7 +1766,7 @@
         "net_pnl":454.718108,
         "net_return":0.0043072043,
         "win":true,
-        "cum_net_pnl":11260.87700825,
+        "cum_net_pnl":5916.26970725,
         "drawdown":0.0
     },
     {
@@ -1766,7 +1796,7 @@
         "net_pnl":-3163.364811,
         "net_return":-0.0299268878,
         "win":false,
-        "cum_net_pnl":8097.51219725,
+        "cum_net_pnl":2752.90489625,
         "drawdown":-3163.364811
     },
     {
@@ -1796,7 +1826,7 @@
         "net_pnl":768.801933,
         "net_return":0.0070632722,
         "win":true,
-        "cum_net_pnl":8866.31413025,
+        "cum_net_pnl":3521.70682925,
         "drawdown":-2394.562878
     },
     {
@@ -1826,7 +1856,7 @@
         "net_pnl":-236.964702,
         "net_return":-0.0021937959,
         "win":false,
-        "cum_net_pnl":8629.34942825,
+        "cum_net_pnl":3284.74212725,
         "drawdown":-2631.52758
     },
     {
@@ -1856,7 +1886,7 @@
         "net_pnl":4430.4568432,
         "net_return":0.039796,
         "win":true,
-        "cum_net_pnl":13059.80627145,
+        "cum_net_pnl":7715.19897045,
         "drawdown":0.0
     },
     {
@@ -1886,7 +1916,7 @@
         "net_pnl":1521.128306,
         "net_return":0.0131147319,
         "win":true,
-        "cum_net_pnl":14580.93457745,
+        "cum_net_pnl":9236.32727645,
         "drawdown":0.0
     },
     {
@@ -1916,7 +1946,7 @@
         "net_pnl":-6.996057,
         "net_return":-0.0000593195,
         "win":false,
-        "cum_net_pnl":14573.93852045,
+        "cum_net_pnl":9229.33121945,
         "drawdown":-6.996057
     },
     {
@@ -1946,7 +1976,7 @@
         "net_pnl":2395.664065,
         "net_return":0.020698856,
         "win":true,
-        "cum_net_pnl":16969.60258545,
+        "cum_net_pnl":11624.99528445,
         "drawdown":0.0
     },
     {
@@ -1976,7 +2006,7 @@
         "net_pnl":772.005381,
         "net_return":0.0068125902,
         "win":true,
-        "cum_net_pnl":17741.60796645,
+        "cum_net_pnl":12397.00066545,
         "drawdown":0.0
     },
     {
@@ -2006,7 +2036,7 @@
         "net_pnl":825.33039,
         "net_return":0.0072255478,
         "win":true,
-        "cum_net_pnl":18566.93835645,
+        "cum_net_pnl":13222.33105545,
         "drawdown":0.0
     },
     {
@@ -2036,7 +2066,7 @@
         "net_pnl":-850.638378,
         "net_return":-0.0072391367,
         "win":false,
-        "cum_net_pnl":17716.29997845,
+        "cum_net_pnl":12371.69267745,
         "drawdown":-850.638378
     },
     {
@@ -2066,7 +2096,7 @@
         "net_pnl":-4997.790518,
         "net_return":-0.0405206326,
         "win":false,
-        "cum_net_pnl":12718.50946045,
+        "cum_net_pnl":7373.90215945,
         "drawdown":-5848.428896
     },
     {
@@ -2096,7 +2126,7 @@
         "net_pnl":943.78358,
         "net_return":0.0079734496,
         "win":true,
-        "cum_net_pnl":13662.29304045,
+        "cum_net_pnl":8317.68573945,
         "drawdown":-4904.645316
     },
     {
@@ -2126,7 +2156,7 @@
         "net_pnl":-1470.37037,
         "net_return":-0.0130319611,
         "win":false,
-        "cum_net_pnl":12191.92267045,
+        "cum_net_pnl":6847.31536945,
         "drawdown":-6375.015686
     },
     {
@@ -2156,7 +2186,7 @@
         "net_pnl":-1864.620941,
         "net_return":-0.0163168659,
         "win":false,
-        "cum_net_pnl":10327.30172945,
+        "cum_net_pnl":4982.69442845,
         "drawdown":-8239.636627
     },
     {
@@ -2186,7 +2216,7 @@
         "net_pnl":-4455.57001,
         "net_return":-0.0396284105,
         "win":false,
-        "cum_net_pnl":5871.73171945,
+        "cum_net_pnl":527.12441845,
         "drawdown":-12695.206637
     },
     {
@@ -2216,7 +2246,7 @@
         "net_pnl":-1502.205376,
         "net_return":-0.0128540433,
         "win":false,
-        "cum_net_pnl":4369.52634345,
+        "cum_net_pnl":-975.08095755,
         "drawdown":-14197.412013
     },
     {
@@ -2246,7 +2276,7 @@
         "net_pnl":-1693.791982,
         "net_return":-0.0153807552,
         "win":false,
-        "cum_net_pnl":2675.73436145,
+        "cum_net_pnl":-2668.87293955,
         "drawdown":-15891.203995
     },
     {
@@ -2276,7 +2306,7 @@
         "net_pnl":-598.961476,
         "net_return":-0.0053576428,
         "win":false,
-        "cum_net_pnl":2076.77288545,
+        "cum_net_pnl":-3267.83441555,
         "drawdown":-16490.165471
     },
     {
@@ -2306,7 +2336,7 @@
         "net_pnl":-430.782786,
         "net_return":-0.0039736664,
         "win":false,
-        "cum_net_pnl":1645.99009945,
+        "cum_net_pnl":-3698.61720155,
         "drawdown":-16920.948257
     },
     {
@@ -2336,7 +2366,7 @@
         "net_pnl":1523.413078,
         "net_return":0.0133677954,
         "win":true,
-        "cum_net_pnl":3169.40317745,
+        "cum_net_pnl":-2175.20412355,
         "drawdown":-15397.535179
     },
     {
@@ -2366,7 +2396,7 @@
         "net_pnl":-62.242136,
         "net_return":-0.0005380027,
         "win":false,
-        "cum_net_pnl":3107.16104145,
+        "cum_net_pnl":-2237.44625955,
         "drawdown":-15459.777315
     },
     {
@@ -2396,7 +2426,7 @@
         "net_pnl":727.333485,
         "net_return":0.0064504234,
         "win":true,
-        "cum_net_pnl":3834.49452645,
+        "cum_net_pnl":-1510.11277455,
         "drawdown":-14732.44383
     },
     {
@@ -2426,7 +2456,7 @@
         "net_pnl":-687.724843,
         "net_return":-0.0063070131,
         "win":false,
-        "cum_net_pnl":3146.76968345,
+        "cum_net_pnl":-2197.83761755,
         "drawdown":-15420.168673
     },
     {
@@ -2456,7 +2486,7 @@
         "net_pnl":2255.98856,
         "net_return":0.020121577,
         "win":true,
-        "cum_net_pnl":5402.75824345,
+        "cum_net_pnl":58.15094245,
         "drawdown":-13164.180113
     },
     {
@@ -2486,7 +2516,7 @@
         "net_pnl":-361.775411,
         "net_return":-0.0031624687,
         "win":false,
-        "cum_net_pnl":5040.98283245,
+        "cum_net_pnl":-303.62446855,
         "drawdown":-13525.955524
     },
     {
@@ -2516,7 +2546,7 @@
         "net_pnl":1980.659063,
         "net_return":0.0166929555,
         "win":true,
-        "cum_net_pnl":7021.64189545,
+        "cum_net_pnl":1677.03459445,
         "drawdown":-11545.296461
     },
     {
@@ -2546,7 +2576,7 @@
         "net_pnl":1586.197555,
         "net_return":0.0131463389,
         "win":true,
-        "cum_net_pnl":8607.83945045,
+        "cum_net_pnl":3263.23214945,
         "drawdown":-9959.098906
     },
     {
@@ -2576,7 +2606,7 @@
         "net_pnl":-1913.198542,
         "net_return":-0.0157531868,
         "win":false,
-        "cum_net_pnl":6694.64090845,
+        "cum_net_pnl":1350.03360745,
         "drawdown":-11872.297448
     },
     {
@@ -2606,7 +2636,7 @@
         "net_pnl":3627.16636622,
         "net_return":0.029803,
         "win":true,
-        "cum_net_pnl":10321.80727467,
+        "cum_net_pnl":4977.19997367,
         "drawdown":-8245.13108178
     },
     {
@@ -2636,7 +2666,7 @@
         "net_pnl":2402.515206,
         "net_return":0.0212168046,
         "win":true,
-        "cum_net_pnl":12724.32248067,
+        "cum_net_pnl":7379.71517967,
         "drawdown":-5842.61587578
     },
     {
@@ -2666,7 +2696,7 @@
         "net_pnl":-4372.767319,
         "net_return":-0.0394613097,
         "win":false,
-        "cum_net_pnl":8351.55516167,
+        "cum_net_pnl":3006.94786067,
         "drawdown":-10215.38319478
     },
     {
@@ -2696,7 +2726,7 @@
         "net_pnl":80.157344,
         "net_return":0.0006960418,
         "win":true,
-        "cum_net_pnl":8431.71250567,
+        "cum_net_pnl":3087.10520467,
         "drawdown":-10135.22585078
     },
     {
@@ -2726,7 +2756,7 @@
         "net_pnl":2309.410386,
         "net_return":0.0204166681,
         "win":true,
-        "cum_net_pnl":10741.12289167,
+        "cum_net_pnl":5396.51559067,
         "drawdown":-7825.81546478
     },
     {
@@ -2756,7 +2786,7 @@
         "net_pnl":2581.14387,
         "net_return":0.0232992716,
         "win":true,
-        "cum_net_pnl":13322.26676167,
+        "cum_net_pnl":7977.65946067,
         "drawdown":-5244.67159478
     },
     {
@@ -2786,7 +2816,7 @@
         "net_pnl":4305.96209052,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":17628.22885219,
+        "cum_net_pnl":12283.62155119,
         "drawdown":-938.70950426
     },
     {
@@ -2816,7 +2846,7 @@
         "net_pnl":790.472903,
         "net_return":0.0072860333,
         "win":true,
-        "cum_net_pnl":18418.70175519,
+        "cum_net_pnl":13074.09445419,
         "drawdown":-148.23660126
     },
     {
@@ -2846,7 +2876,7 @@
         "net_pnl":941.149804,
         "net_return":0.0085505166,
         "win":true,
-        "cum_net_pnl":19359.85155919,
+        "cum_net_pnl":14015.24425819,
         "drawdown":0.0
     },
     {
@@ -2876,7 +2906,7 @@
         "net_pnl":-373.620894,
         "net_return":-0.0032636389,
         "win":false,
-        "cum_net_pnl":18986.23066519,
+        "cum_net_pnl":13641.62336419,
         "drawdown":-373.620894
     },
     {
@@ -2906,7 +2936,7 @@
         "net_pnl":1732.953639,
         "net_return":0.01574565,
         "win":true,
-        "cum_net_pnl":20719.18430419,
+        "cum_net_pnl":15374.57700319,
         "drawdown":0.0
     },
     {
@@ -2936,7 +2966,7 @@
         "net_pnl":4240.77468168,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":24959.95898587,
+        "cum_net_pnl":19615.35168487,
         "drawdown":0.0
     },
     {
@@ -2966,7 +2996,7 @@
         "net_pnl":-2334.977291,
         "net_return":-0.0229867569,
         "win":false,
-        "cum_net_pnl":22624.98169487,
+        "cum_net_pnl":17280.37439387,
         "drawdown":-2334.977291
     },
     {
@@ -2996,7 +3026,7 @@
         "net_pnl":-2627.947991,
         "net_return":-0.025294592,
         "win":false,
-        "cum_net_pnl":19997.03370387,
+        "cum_net_pnl":14652.42640287,
         "drawdown":-4962.925282
     },
     {
@@ -3026,7 +3056,7 @@
         "net_pnl":-1113.285068,
         "net_return":-0.0107697278,
         "win":false,
-        "cum_net_pnl":18883.74863587,
+        "cum_net_pnl":13539.14133487,
         "drawdown":-6076.21035
     },
     {
@@ -3056,7 +3086,7 @@
         "net_pnl":1252.017937,
         "net_return":0.0119554322,
         "win":true,
-        "cum_net_pnl":20135.76657287,
+        "cum_net_pnl":14791.15927187,
         "drawdown":-4824.192413
     },
     {
@@ -3086,7 +3116,7 @@
         "net_pnl":1316.811442,
         "net_return":0.0127831585,
         "win":true,
-        "cum_net_pnl":21452.57801487,
+        "cum_net_pnl":16107.97071387,
         "drawdown":-3507.380971
     },
     {
@@ -3116,7 +3146,7 @@
         "net_pnl":-1155.397734,
         "net_return":-0.0122367293,
         "win":false,
-        "cum_net_pnl":20297.18028087,
+        "cum_net_pnl":14952.57297987,
         "drawdown":-4662.778705
     },
     {
@@ -3146,7 +3176,7 @@
         "net_pnl":3444.19116108,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":23741.37144195,
+        "cum_net_pnl":18396.76414095,
         "drawdown":-1218.58754392
     },
     {
@@ -3176,7 +3206,7 @@
         "net_pnl":-5197.13484324,
         "net_return":-0.060206,
         "win":false,
-        "cum_net_pnl":18544.23659871,
+        "cum_net_pnl":13199.62929771,
         "drawdown":-6415.72238716
     },
     {
@@ -3206,7 +3236,7 @@
         "net_pnl":2090.680064,
         "net_return":0.022887709,
         "win":true,
-        "cum_net_pnl":20634.91666271,
+        "cum_net_pnl":15290.30936171,
         "drawdown":-4325.04232316
     },
     {
@@ -3236,7 +3266,7 @@
         "net_pnl":-1339.168791,
         "net_return":-0.0143296709,
         "win":false,
-        "cum_net_pnl":19295.74787171,
+        "cum_net_pnl":13951.14057071,
         "drawdown":-5664.21111416
     },
     {
@@ -3266,7 +3296,7 @@
         "net_pnl":93.683283,
         "net_return":0.0010480362,
         "win":true,
-        "cum_net_pnl":19389.43115471,
+        "cum_net_pnl":14044.82385371,
         "drawdown":-5570.52783116
     },
     {
@@ -3296,7 +3326,7 @@
         "net_pnl":-702.400653,
         "net_return":-0.0075775275,
         "win":false,
-        "cum_net_pnl":18687.03050171,
+        "cum_net_pnl":13342.42320071,
         "drawdown":-6272.92848416
     },
     {
@@ -3326,7 +3356,7 @@
         "net_pnl":225.385363,
         "net_return":0.0025582417,
         "win":true,
-        "cum_net_pnl":18912.41586471,
+        "cum_net_pnl":13567.80856371,
         "drawdown":-6047.54312116
     },
     {
@@ -3356,7 +3386,7 @@
         "net_pnl":639.885194,
         "net_return":0.0071141783,
         "win":true,
-        "cum_net_pnl":19552.30105871,
+        "cum_net_pnl":14207.69375771,
         "drawdown":-5407.65792716
     },
     {
@@ -3386,7 +3416,7 @@
         "net_pnl":-168.240442,
         "net_return":-0.0017921379,
         "win":false,
-        "cum_net_pnl":19384.06061671,
+        "cum_net_pnl":14039.45331571,
         "drawdown":-5575.89836916
     },
     {
@@ -3416,7 +3446,7 @@
         "net_pnl":265.126408,
         "net_return":0.0029035971,
         "win":true,
-        "cum_net_pnl":19649.18702471,
+        "cum_net_pnl":14304.57972371,
         "drawdown":-5310.77196116
     },
     {
@@ -3446,7 +3476,7 @@
         "net_pnl":1589.15458,
         "net_return":0.0166712764,
         "win":true,
-        "cum_net_pnl":21238.34160471,
+        "cum_net_pnl":15893.73430371,
         "drawdown":-3721.61738116
     },
     {
@@ -3476,7 +3506,7 @@
         "net_pnl":9.832074,
         "net_return":0.0001028954,
         "win":true,
-        "cum_net_pnl":21248.17367871,
+        "cum_net_pnl":15903.56637771,
         "drawdown":-3711.78530716
     },
     {
@@ -3506,7 +3536,7 @@
         "net_pnl":1083.449073,
         "net_return":0.0115684301,
         "win":true,
-        "cum_net_pnl":22331.62275171,
+        "cum_net_pnl":16987.01545071,
         "drawdown":-2628.33623416
     },
     {
@@ -3536,7 +3566,7 @@
         "net_pnl":-1069.780503,
         "net_return":-0.0121116582,
         "win":false,
-        "cum_net_pnl":21261.84224871,
+        "cum_net_pnl":15917.23494771,
         "drawdown":-3698.11673716
     },
     {
@@ -3566,7 +3596,7 @@
         "net_pnl":-1708.432399,
         "net_return":-0.0197354866,
         "win":false,
-        "cum_net_pnl":19553.40984971,
+        "cum_net_pnl":14208.80254871,
         "drawdown":-5406.54913616
     },
     {
@@ -3596,7 +3626,7 @@
         "net_pnl":828.833849,
         "net_return":0.0093910901,
         "win":true,
-        "cum_net_pnl":20382.24369871,
+        "cum_net_pnl":15037.63639771,
         "drawdown":-4577.71528716
     },
     {
@@ -3626,7 +3656,7 @@
         "net_pnl":3365.93490492,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":23748.17860363,
+        "cum_net_pnl":18403.57130263,
         "drawdown":-1211.78038224
     },
     {
@@ -3656,7 +3686,7 @@
         "net_pnl":1641.7005,
         "net_return":0.0208798335,
         "win":true,
-        "cum_net_pnl":25389.87910363,
+        "cum_net_pnl":20045.27180263,
         "drawdown":0.0
     },
     {
@@ -3686,7 +3716,7 @@
         "net_pnl":-3775.1841167,
         "net_return":-0.060206,
         "win":false,
-        "cum_net_pnl":21614.69498693,
+        "cum_net_pnl":16270.08768593,
         "drawdown":-3775.1841167
     },
     {
@@ -3716,7 +3746,7 @@
         "net_pnl":-511.891139,
         "net_return":-0.0075328102,
         "win":false,
-        "cum_net_pnl":21102.80384793,
+        "cum_net_pnl":15758.19654693,
         "drawdown":-4287.0752557
     },
     {
@@ -3746,7 +3776,7 @@
         "net_pnl":-508.217563,
         "net_return":-0.0073884865,
         "win":false,
-        "cum_net_pnl":20594.58628493,
+        "cum_net_pnl":15249.97898393,
         "drawdown":-4795.2928187
     },
     {
@@ -3776,7 +3806,7 @@
         "net_pnl":-1884.855482,
         "net_return":-0.0259219712,
         "win":false,
-        "cum_net_pnl":18709.73080293,
+        "cum_net_pnl":13365.12350193,
         "drawdown":-6680.1483007
     },
     {
@@ -3806,7 +3836,7 @@
         "net_pnl":2819.80133664,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":21529.53213957,
+        "cum_net_pnl":16184.92483857,
         "drawdown":-3860.34696406
     },
     {
@@ -3836,7 +3866,7 @@
         "net_pnl":2419.70277,
         "net_return":0.0366790689,
         "win":true,
-        "cum_net_pnl":23949.23490957,
+        "cum_net_pnl":18604.62760857,
         "drawdown":-1440.64419406
     },
     {
@@ -3866,7 +3896,7 @@
         "net_pnl":1514.696603,
         "net_return":0.0221438066,
         "win":true,
-        "cum_net_pnl":25463.93151257,
+        "cum_net_pnl":20119.32421157,
         "drawdown":0.0
     },
     {
@@ -3896,7 +3926,7 @@
         "net_pnl":1570.088815,
         "net_return":0.0220475731,
         "win":true,
-        "cum_net_pnl":27034.02032757,
+        "cum_net_pnl":21689.41302657,
         "drawdown":0.0
     },
     {
@@ -3926,7 +3956,7 @@
         "net_pnl":2042.364653,
         "net_return":0.0280551648,
         "win":true,
-        "cum_net_pnl":29076.38498057,
+        "cum_net_pnl":23731.77767957,
         "drawdown":0.0
     },
     {
@@ -3956,7 +3986,7 @@
         "net_pnl":2942.9823774,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":32019.36735797,
+        "cum_net_pnl":26674.76005697,
         "drawdown":0.0
     },
     {
@@ -3986,7 +4016,7 @@
         "net_pnl":1324.703812,
         "net_return":0.0185922429,
         "win":true,
-        "cum_net_pnl":33344.07116997,
+        "cum_net_pnl":27999.46386897,
         "drawdown":0.0
     },
     {
@@ -4016,7 +4046,7 @@
         "net_pnl":880.791955,
         "net_return":0.0128138585,
         "win":true,
-        "cum_net_pnl":34224.86312497,
+        "cum_net_pnl":28880.25582397,
         "drawdown":0.0
     },
     {
@@ -4046,7 +4076,7 @@
         "net_pnl":3055.794433,
         "net_return":0.0450421478,
         "win":true,
-        "cum_net_pnl":37280.65755797,
+        "cum_net_pnl":31936.05025697,
         "drawdown":0.0
     },
     {
@@ -4076,7 +4106,7 @@
         "net_pnl":2838.42801648,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":40119.08557445,
+        "cum_net_pnl":34774.47827345,
         "drawdown":0.0
     },
     {
@@ -4106,7 +4136,7 @@
         "net_pnl":2738.15019732,
         "net_return":0.039804,
         "win":true,
-        "cum_net_pnl":42857.23577177,
+        "cum_net_pnl":37512.62847077,
         "drawdown":0.0
     },
     {
@@ -4136,7 +4166,7 @@
         "net_pnl":1524.807252,
         "net_return":0.0228625328,
         "win":true,
-        "cum_net_pnl":44382.04302377,
+        "cum_net_pnl":39037.43572277,
         "drawdown":0.0
     },
     {
@@ -4166,7 +4196,7 @@
         "net_pnl":1175.393309,
         "net_return":0.0172654167,
         "win":true,
-        "cum_net_pnl":45557.43633277,
+        "cum_net_pnl":40212.82903177,
         "drawdown":0.0
     },
     {
@@ -4196,7 +4226,7 @@
         "net_pnl":1678.082589,
         "net_return":0.0249376232,
         "win":true,
-        "cum_net_pnl":47235.51892177,
+        "cum_net_pnl":41890.91162077,
         "drawdown":0.0
     },
     {
@@ -4226,7 +4256,7 @@
         "net_pnl":3076.689047,
         "net_return":0.0446807544,
         "win":true,
-        "cum_net_pnl":50312.20796877,
+        "cum_net_pnl":44967.60066777,
         "drawdown":0.0
     },
     {
@@ -4256,7 +4286,7 @@
         "net_pnl":815.272928,
         "net_return":0.0113310803,
         "win":true,
-        "cum_net_pnl":51127.48089677,
+        "cum_net_pnl":45782.87359577,
         "drawdown":0.0
     },
     {
@@ -4286,7 +4316,7 @@
         "net_pnl":1187.274951,
         "net_return":0.0165417676,
         "win":true,
-        "cum_net_pnl":52314.75584777,
+        "cum_net_pnl":46970.14854677,
         "drawdown":0.0
     },
     {
@@ -4316,7 +4346,7 @@
         "net_pnl":2284.048633,
         "net_return":0.0312643324,
         "win":true,
-        "cum_net_pnl":54598.80448077,
+        "cum_net_pnl":49254.19717977,
         "drawdown":0.0
     },
     {
@@ -4346,7 +4376,7 @@
         "net_pnl":3706.256398,
         "net_return":0.052379608,
         "win":true,
-        "cum_net_pnl":58305.06087877,
+        "cum_net_pnl":52960.45357777,
         "drawdown":0.0
     },
     {
@@ -4376,7 +4406,7 @@
         "net_pnl":2991.22813584,
         "net_return":0.039796,
         "win":true,
-        "cum_net_pnl":61296.28901461,
+        "cum_net_pnl":55951.68171361,
         "drawdown":0.0
     },
     {
@@ -4406,7 +4436,7 @@
         "net_pnl":1397.074026,
         "net_return":0.0181118171,
         "win":true,
-        "cum_net_pnl":62693.36304061,
+        "cum_net_pnl":57348.75573961,
         "drawdown":0.0
     },
     {
@@ -4436,7 +4466,7 @@
         "net_pnl":1854.482206,
         "net_return":0.0244901194,
         "win":true,
-        "cum_net_pnl":64547.84524661,
+        "cum_net_pnl":59203.23794561,
         "drawdown":0.0
     },
     {
@@ -4466,7 +4496,7 @@
         "net_pnl":2003.607292,
         "net_return":0.0271292078,
         "win":true,
-        "cum_net_pnl":66551.45253861,
+        "cum_net_pnl":61206.84523761,
         "drawdown":0.0
     },
     {
@@ -4496,7 +4526,7 @@
         "net_pnl":3038.59253912,
         "net_return":0.039796,
         "win":true,
-        "cum_net_pnl":69590.04507773,
+        "cum_net_pnl":64245.43777673,
         "drawdown":0.0
     },
     {
@@ -4526,7 +4556,7 @@
         "net_pnl":791.037897,
         "net_return":0.0101073254,
         "win":true,
-        "cum_net_pnl":70381.08297473,
+        "cum_net_pnl":65036.47567373,
         "drawdown":0.0
     },
     {
@@ -4556,7 +4586,7 @@
         "net_pnl":1857.241719,
         "net_return":0.0243396928,
         "win":true,
-        "cum_net_pnl":72238.32469373,
+        "cum_net_pnl":66893.71739273,
         "drawdown":0.0
     },
     {
@@ -4586,7 +4616,7 @@
         "net_pnl":2415.43986661,
         "net_return":0.029803,
         "win":true,
-        "cum_net_pnl":74653.76456034,
+        "cum_net_pnl":69309.15725934,
         "drawdown":0.0
     }
 ]

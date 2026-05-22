@@ -1,6 +1,6 @@
 # Live trader state, run logs, cron log (generated at runtime)
 trade/runtime/
-
+backtest/test_data/
 # Python
 __pycache__/
 *.py[cod]

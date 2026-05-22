@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
-from fng_trading.core.strategy_logic import (
+from core.strategy_logic import (
     get_ma_signal_at,
     get_position,
     get_stop_loss_rate,
@@ -42,6 +42,21 @@ def parse_fear_greed_rows(data_list: List[Dict[str, Any]]) -> pd.DataFrame:
         pd.to_numeric(df["timestamp"], errors="coerce"), unit="s", utc=True
     )
     return df.sort_values("timestamp").reset_index(drop=True)
+
+
+def filter_daily_midnight_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Keep finalized CMC daily candles (UTC 00:00:00).
+    Drops intraday partial rows (e.g. historicalValues \"now\").
+    """
+    ts = df["timestamp"]
+    mask = (
+        (ts.dt.hour == 0)
+        & (ts.dt.minute == 0)
+        & (ts.dt.second == 0)
+        & (ts.dt.microsecond == 0)
+    )
+    return df.loc[mask].reset_index(drop=True)
 
 
 def _evaluate_signal_row(
@@ -108,9 +123,15 @@ def evaluate_latest_signal(
     use_ma_tp: bool = True,
     ma_days: int = 90,
 ) -> DailySignal:
-    df = parse_fear_greed_rows(data_list)
+    """
+    Live signal: latest finalized daily candle vs the previous one.
+    Ignores intraday partial rows so score_diff matches backtest (yesterday vs day before).
+    """
+    df = filter_daily_midnight_rows(parse_fear_greed_rows(data_list))
     if len(df) < 2:
-        raise ValueError("Need at least 2 fear-greed rows to compute score_diff.")
+        raise ValueError(
+            "Need at least 2 finalized daily fear-greed rows to compute score_diff."
+        )
     return _evaluate_signal_row(df.iloc[-1], df.iloc[-2], kline_df, use_ma_tp, ma_days)
 
 
@@ -123,9 +144,9 @@ def evaluate_signal_on_date(
 ) -> DailySignal:
     """
     Evaluate signal for a specific UTC calendar day (YYYY-MM-DD).
-    Uses the row on that day and the previous row in the sorted series.
+    Uses the finalized daily row on that day and the previous daily row.
     """
-    df = parse_fear_greed_rows(data_list)
+    df = filter_daily_midnight_rows(parse_fear_greed_rows(data_list))
     df["signal_date"] = df["timestamp"].dt.strftime("%Y-%m-%d")
     matches = df.index[df["signal_date"] == signal_day].tolist()
     if not matches:

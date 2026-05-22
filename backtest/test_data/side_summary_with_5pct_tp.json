@@ -1,16 +1,16 @@
 [
     {
         "side":"LONG",
-        "trades":73,
+        "trades":74,
         "wins":43,
-        "win_rate":0.5890410959,
+        "win_rate":0.5810810811,
         "tp_hits":5,
-        "tp_hit_rate":0.0684931507,
-        "gross_pnl":29164.1274,
-        "fees":1380.75665674,
-        "net_pnl":27783.37074326,
-        "avg_net_pnl":380.5941197707,
-        "avg_net_return":0.0053758358
+        "tp_hit_rate":0.0675675676,
+        "gross_pnl":23839.4374,
+        "fees":1400.67395774,
+        "net_pnl":22438.76344226,
+        "avg_net_pnl":303.2265330035,
+        "avg_net_return":0.0045968301
     },
     {
         "side":"SHORT",

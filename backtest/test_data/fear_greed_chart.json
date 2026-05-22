@@ -2,6 +2,20 @@
     "data": {
         "dataList": [
             {
+                "score": 61,
+                "name": "Greed",
+                "timestamp": "1736035200",
+                "btcPrice": "98233.91",
+                "btcVolume": "20525254824.64"
+            },
+            {
+                "score": 60,
+                "name": "Greed",
+                "timestamp": "1736121600",
+                "btcPrice": "98314.96",
+                "btcVolume": "51823432704.90"
+            },
+            {
                 "score": 66,
                 "name": "Greed",
                 "timestamp": "1736208000",
@@ -3481,11 +3495,32 @@
                 "btcVolume": "41520471808.40"
             },
             {
+                "score": 39,
+                "name": "Fear",
+                "timestamp": "1779148800",
+                "btcPrice": "76954.75",
+                "btcVolume": "26031898331.65"
+            },
+            {
+                "score": 39,
+                "name": "Fear",
+                "timestamp": "1779235200",
+                "btcPrice": "76749.45",
+                "btcVolume": "26668360935.71"
+            },
+            {
                 "score": 40,
                 "name": "Neutral",
-                "timestamp": "1779172690",
-                "btcPrice": "76934.19",
-                "btcVolume": "38593404073.04"
+                "timestamp": "1779321600",
+                "btcPrice": "77462.51",
+                "btcVolume": "27141485403.56"
+            },
+            {
+                "score": 40,
+                "name": "Neutral",
+                "timestamp": "1779421090",
+                "btcPrice": "77703.34",
+                "btcVolume": "25390297334.59"
             }
         ],
         "dialConfig": [
@@ -3519,22 +3554,22 @@
             "now": {
                 "score": 40,
                 "name": "Neutral",
-                "timestamp": "1779172690"
+                "timestamp": "1779421090"
             },
             "yesterday": {
-                "score": 39,
-                "name": "Fear",
-                "timestamp": "1779062400"
+                "score": 40,
+                "name": "Neutral",
+                "timestamp": "1779321600"
             },
             "lastWeek": {
-                "score": 49,
+                "score": 45,
                 "name": "Neutral",
-                "timestamp": "1778544000"
+                "timestamp": "1778803200"
             },
             "lastMonth": {
-                "score": 50,
-                "name": "Neutral",
-                "timestamp": "1776556800"
+                "score": 61,
+                "name": "Greed",
+                "timestamp": "1776816000"
             },
             "yearlyHigh": {
                 "score": 76,
@@ -3549,10 +3584,10 @@
         }
     },
     "status": {
-        "timestamp": "2026-05-19T06:42:10.575Z",
+        "timestamp": "2026-05-22T03:43:51.248Z",
         "error_code": "0",
         "error_message": "SUCCESS",
-        "elapsed": "29",
+        "elapsed": "38",
         "credit_count": 0
     }
 }

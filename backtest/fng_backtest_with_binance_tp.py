@@ -1,28 +1,77 @@
+import argparse
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Optional
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
+from backtest.fear_greed_chart_fetch import fetch_fear_greed_chart_to_file
 from core.data_fetch import fetch_binance_futures_klines, load_fear_greed_from_file
+from core.fng_signal import filter_daily_midnight_rows, parse_fear_greed_rows
 from core.strategy_logic import apply_trade_logic, get_position
 
 SYMBOL = "BTCUSDT"
 INTERVAL = "1d"
 _BACKTEST_ROOT = Path(__file__).resolve().parent
-DATA_PATH = _BACKTEST_ROOT / "test_data" / "fear_greed_chart.json"
+
+# --- backtest period (passed into fear_greed_chart_fetch when fetching) ---
+DEFAULT_START = "2025-01-07 00:00:00"
+DEFAULT_END = "2026-05-30 23:59:59"
+DEFAULT_CONVERT_ID = 2781
+FNG_FETCH_BUFFER_DAYS = 2
+
+
+def parse_time(value: str) -> int:
+    return int(datetime.strptime(value, "%Y-%m-%d %H:%M:%S").timestamp())
+
+
+def resolve_period(
+    start: Optional[int] = None,
+    end: Optional[int] = None,
+) -> tuple[int, int]:
+    if start is None:
+        start = parse_time(DEFAULT_START)
+    if end is None:
+        end = parse_time(DEFAULT_END)
+    return start, end
+
+
+def fetch_start_with_buffer(
+    start: int, buffer_days: int = FNG_FETCH_BUFFER_DAYS
+) -> int:
+    return start - int(timedelta(days=buffer_days).total_seconds())
+
+
+def ensure_fear_greed_data(
+    start: int,
+    end: int,
+    *,
+    convert_id: int = DEFAULT_CONVERT_ID,
+    output: Path = FEAR_GREED_CHART_PATH,
+) -> Path:
+    """Fetch fear-greed JSON for the backtest window (+ buffer before start)."""
+    fetch_start = fetch_start_with_buffer(start)
+    print(
+        f"Fetching Fear & Greed chart for backtest "
+        f"(buffered start={fetch_start}, end={end}, convert_id={convert_id}) ..."
+    )
+    path = fetch_fear_greed_chart_to_file(
+        fetch_start, end, output=output, convert_id=convert_id
+    )
+    print(f"Saved fear-greed data: {path}")
+    return path
 
 
 def normalize_to_datalist():
-    return load_fear_greed_from_file(str(DATA_PATH))
+    ensure_test_data_dir(FEAR_GREED_CHART_PATH)
+    return load_fear_greed_from_file(str(FEAR_GREED_CHART_PATH))
 
 
 def build_base_trades(data_list):
-    df = pd.DataFrame(data_list)
-    df["score"] = pd.to_numeric(df["score"], errors="coerce")
-    df["btcPrice"] = pd.to_numeric(df["btcPrice"], errors="coerce")
-    df["timestamp"] = pd.to_datetime(pd.to_numeric(df["timestamp"], errors="coerce"), unit="s", utc=True)
-    df = df.sort_values("timestamp").reset_index(drop=True)
+    df = filter_daily_midnight_rows(parse_fear_greed_rows(data_list))
 
     df["prev_score"] = df["score"].shift(1)
     df["score_diff"] = df["score"] - df["prev_score"]
@@ -39,6 +88,17 @@ def build_base_trades(data_list):
         & (df["qty_btc"] > 0)
         & (df["normal_exit_price"].notna())
     ].copy()
+    return df, trades
+
+
+def filter_to_backtest_period(
+    df: pd.DataFrame, trades: pd.DataFrame, start: int, end: int
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    start_ts = pd.to_datetime(start, unit="s", utc=True)
+    end_ts = pd.to_datetime(end, unit="s", utc=True)
+    in_range = (df["timestamp"] >= start_ts) & (df["timestamp"] <= end_ts)
+    df = df.loc[in_range].reset_index(drop=True)
+    trades = trades.loc[trades["timestamp"].between(start_ts, end_ts)].copy()
     return df, trades
 
 
@@ -79,6 +139,7 @@ def plot_results(df, trades, output_dir):
         return []
 
     out = Path(output_dir)
+    test_data_dir = ensure_test_data_dir(out / "test_data")
     outputs = []
 
     fig, axes = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
@@ -94,7 +155,7 @@ def plot_results(df, trades, output_dir):
     axes[1].legend(loc="best")
 
     fig.tight_layout()
-    equity_path = out / "test_data/equity_drawdown.png"
+    equity_path = test_data_dir / "equity_drawdown.png"
     fig.savefig(equity_path, dpi=150)
     plt.close(fig)
     outputs.append(equity_path)
@@ -105,7 +166,7 @@ def plot_results(df, trades, output_dir):
     ax.set_xlabel("Net PnL")
     ax.set_ylabel("Trades")
     fig.tight_layout()
-    hist_path = out / "test_data/net_pnl_hist.png"
+    hist_path = test_data_dir / "net_pnl_hist.png"
     fig.savefig(hist_path, dpi=150)
     plt.close(fig)
     outputs.append(hist_path)
@@ -121,7 +182,7 @@ def plot_results(df, trades, output_dir):
     ax.set_ylabel("Price")
     ax.legend(loc="best")
     fig.tight_layout()
-    price_path = out / "test_data/price_with_trades.png"
+    price_path = test_data_dir / "price_with_trades.png"
     fig.savefig(price_path, dpi=150)
     plt.close(fig)
     outputs.append(price_path)
@@ -129,12 +190,66 @@ def plot_results(df, trades, output_dir):
     return outputs
 
 
-def main(output_dir=None, use_ma_tp: bool = True):
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(
+        description="Fear & Greed backtest with Binance TP/SL simulation."
+    )
+    parser.add_argument(
+        "--start",
+        type=parse_time,
+        help=f"Backtest start (UTC), e.g. {DEFAULT_START}",
+    )
+    parser.add_argument(
+        "--end",
+        type=parse_time,
+        help=f"Backtest end (UTC), e.g. {DEFAULT_END}",
+    )
+    parser.add_argument("--convert-id", type=int, default=DEFAULT_CONVERT_ID)
+    parser.add_argument(
+        "--skip-fetch",
+        action="store_true",
+        help="Do not call CMC API; use existing fear_greed_chart.json",
+    )
+    parser.add_argument("--output-dir", default=None, help="Backtest output root directory")
+    parser.add_argument(
+        "--no-ma-tp",
+        action="store_true",
+        help="Disable MA-adjusted take-profit",
+    )
+    return parser.parse_args(argv)
+
+
+def main(
+    output_dir=None,
+    use_ma_tp: bool = True,
+    *,
+    start: Optional[int] = None,
+    end: Optional[int] = None,
+    skip_fetch: bool = False,
+    convert_id: int = DEFAULT_CONVERT_ID,
+):
+    start, end = resolve_period(start, end)
     out_dir = Path(output_dir) if output_dir is not None else _BACKTEST_ROOT
+    test_data_dir = ensure_test_data_dir(out_dir / "test_data")
+
+    if not skip_fetch:
+        ensure_fear_greed_data(start, end, convert_id=convert_id)
+    else:
+        print("Skipping Fear & Greed fetch (--skip-fetch); using local JSON.")
 
     data_list = normalize_to_datalist()
 
     df, trades = build_base_trades(data_list)
+    df, trades = filter_to_backtest_period(df, trades, start, end)
+
+    if df.empty:
+        raise ValueError(
+            f"No fear-greed daily rows in backtest period "
+            f"({datetime.fromtimestamp(start, tz=timezone.utc)} .. "
+            f"{datetime.fromtimestamp(end, tz=timezone.utc)}). "
+            "Check --start/--end or run fetch without --skip-fetch."
+        )
+
     start_ms = int(df["timestamp"].min().timestamp() * 1000)
     ma_start_ms = start_ms - int(pd.Timedelta(days=30).total_seconds() * 1000)
     end_ms = int((df["timestamp"].max() + pd.Timedelta(days=1)).timestamp() * 1000)
@@ -153,23 +268,36 @@ def main(output_dir=None, use_ma_tp: bool = True):
         "cum_net_pnl", "drawdown",
     ]
 
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "test_data").mkdir(parents=True, exist_ok=True)
-    trades[cols].to_json(out_dir / "test_data/trade_details_with_5pct_tp.json", orient="records", date_format="iso", indent=4)
+    trades[cols].to_json(
+        test_data_dir / "trade_details_with_5pct_tp.json",
+        orient="records",
+        date_format="iso",
+        indent=4,
+    )
     summary = summarize(trades)
-    (out_dir / "test_data/summary_with_5pct_tp.json").write_text(
+    (test_data_dir / "summary_with_5pct_tp.json").write_text(
         json.dumps(summary, indent=4),
         encoding="utf-8",
     )
-    side_summary(trades).to_json(out_dir / "test_data/side_summary_with_5pct_tp.json", orient="records", date_format="iso", indent=4)
-    kline_df.to_json(out_dir / "test_data/binance_btcusdt_1d_klines.json", orient="records", date_format="iso", indent=4)
+    side_summary(trades).to_json(
+        test_data_dir / "side_summary_with_5pct_tp.json",
+        orient="records",
+        date_format="iso",
+        indent=4,
+    )
+    kline_df.to_json(
+        test_data_dir / "binance_btcusdt_1d_klines.json",
+        orient="records",
+        date_format="iso",
+        indent=4,
+    )
     chart_paths = plot_results(df, trades, out_dir)
 
     print("Saved:")
-    print(out_dir / "test_data/trade_details_with_5pct_tp.json")
-    print(out_dir / "test_data/summary_with_5pct_tp.json")
-    print(out_dir / "test_data/side_summary_with_5pct_tp.json")
-    print(out_dir / "test_data/binance_btcusdt_1d_klines.json")
+    print(test_data_dir / "trade_details_with_5pct_tp.json")
+    print(test_data_dir / "summary_with_5pct_tp.json")
+    print(test_data_dir / "side_summary_with_5pct_tp.json")
+    print(test_data_dir / "binance_btcusdt_1d_klines.json")
     for chart in chart_paths:
         print(chart)
     print("\nSummary:")
@@ -177,4 +305,12 @@ def main(output_dir=None, use_ma_tp: bool = True):
 
 
 if __name__ == "__main__":
-    main(use_ma_tp=True)
+    cli = parse_args()
+    main(
+        output_dir=cli.output_dir,
+        use_ma_tp=not cli.no_ma_tp,
+        start=cli.start,
+        end=cli.end,
+        skip_fetch=cli.skip_fetch,
+        convert_id=cli.convert_id,
+    )

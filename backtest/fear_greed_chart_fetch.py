@@ -1,38 +1,58 @@
+"""
+Fetch CMC fear-greed chart JSON to disk.
+
+Period defaults and CLI wiring live in fng_backtest_with_binance_tp; this module
+only performs the HTTP fetch and file write when called with explicit parameters.
+"""
+
 import argparse
 import json
-from datetime import datetime
 from pathlib import Path
+from typing import Optional, Union
 
-from fng_trading.core.data_fetch import fetch_fear_greed_chart
+from backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
+from core.data_fetch import fetch_fear_greed_chart
 
-DEFAULT_START = "2025-01-07 00:00:00"
-DEFAULT_END = "2026-05-19 23:59:59"
-_BACKTEST_ROOT = Path(__file__).resolve().parent
-
-
-def parse_time(value: str):
-    return int(datetime.strptime(value, "%Y-%m-%d %H:%M:%S").timestamp())
+PathLike = Union[str, Path]
 
 
-def main():
-    default_out = _BACKTEST_ROOT / "test_data" / "fear_greed_chart.json"
+def fetch_fear_greed_chart_to_file(
+    start: int,
+    end: int,
+    output: PathLike,
+    convert_id: int,
+) -> Path:
+    """Fetch CMC fear-greed chart JSON and write to *output*."""
+    output_path = Path(output)
+    ensure_test_data_dir(output_path)
+    data = fetch_fear_greed_chart(start, end, convert_id)
+    output_path.write_text(json.dumps(data, indent=4), encoding="utf-8")
+    return output_path
+
+
+def main(argv: Optional[list[str]] = None) -> Path:
+    from fng_trading.backtest.fng_backtest_with_binance_tp import (
+        DEFAULT_CONVERT_ID,
+        DEFAULT_END,
+        DEFAULT_START,
+        parse_time,
+        resolve_period,
+    )
+
     parser = argparse.ArgumentParser(description="Fetch CoinMarketCap fear-greed chart data.")
     parser.add_argument("--start", type=parse_time)
     parser.add_argument("--end", type=parse_time)
-    parser.add_argument("--convert-id", type=int, default=2781)
-    parser.add_argument("--output", default=str(default_out))
-    args = parser.parse_args()
+    parser.add_argument("--convert-id", type=int, default=DEFAULT_CONVERT_ID)
+    parser.add_argument("--output", default=str(FEAR_GREED_CHART_PATH))
+    args = parser.parse_args(argv)
 
-    if args.start is None:
-        args.start = parse_time(DEFAULT_START)
-    if args.end is None:
-        args.end = parse_time(DEFAULT_END)
-
-    data = fetch_fear_greed_chart(args.start, args.end, args.convert_id)
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(json.dumps(data, indent=4), encoding="utf-8")
-    print(output_path)
+    start, end = resolve_period(args.start, args.end)
+    print(f"Fetching Fear & Greed: start={start} end={end} convert_id={args.convert_id}")
+    path = fetch_fear_greed_chart_to_file(
+        start, end, output=args.output, convert_id=args.convert_id
+    )
+    print(path)
+    return path
 
 
 if __name__ == "__main__":
