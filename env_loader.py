@@ -1,4 +1,4 @@
-"""Load bn_api_key / bn_api_secret from fng_trading/.env or project root .env."""
+"""Load bn_api_key / bn_api_secret from the project root .env file."""
 
 from __future__ import annotations
 
@@ -8,14 +8,10 @@ from typing import Iterable, List
 
 
 _PKG_DIR = Path(__file__).resolve().parent
-_PROJECT_ROOT = _PKG_DIR.parent
 
 
 def env_file_paths() -> List[Path]:
-    return [
-        _PKG_DIR / ".env",
-        _PROJECT_ROOT / ".env",
-    ]
+    return [_PKG_DIR / ".env"]
 
 
 def _parse_env_file(path: Path) -> None:

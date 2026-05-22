@@ -14,6 +14,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+# Parent of repo root must be on PYTHONPATH for `python -m fng_trading.*`
 PKG_PARENT="$(cd "$REPO_ROOT/.." && pwd)"
 
 RUNTIME_DIR="${FNG_RUNTIME_DIR:-$SCRIPT_DIR/runtime}"
@@ -37,15 +38,13 @@ export FNG_ORDER_QTY=0.001
 export FNG_RUN_MODE=once
 export FNG_PRINT_JSON="${FNG_PRINT_JSON:-0}"
 
-for env_file in "$REPO_ROOT/.env" "$PKG_PARENT/.env"; do
-  if [ -f "$env_file" ]; then
-    echo "[cron] source $env_file"
-    set -a
-    # shellcheck disable=SC1091
-    source "$env_file"
-    set +a
-  fi
-done
+if [ -f "$REPO_ROOT/.env" ]; then
+  echo "[cron] source $REPO_ROOT/.env"
+  set -a
+  # shellcheck disable=SC1091
+  source "$REPO_ROOT/.env"
+  set +a
+fi
 
 resolve_python() {
   if [ -n "${FNG_PYTHON:-}" ] && [ -x "$FNG_PYTHON" ]; then

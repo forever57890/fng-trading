@@ -10,7 +10,7 @@ Runs once per invocation:
 From repo root:
   python -m fng_trading.trade.fng_daily_trader
 
-Cron (UTC 00:00): see ``fng_trading/trade/run_fng_daily_cron.sh``.
+Cron (UTC 00:00): see ``trade/run_fng_daily_cron.sh`` (from project root).
 """
 
 from __future__ import annotations
