@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
-from core.strategy_logic import (
+from fng_trading.core.strategy_logic import (
     get_ma_signal_at,
     get_position,
     get_stop_loss_rate,

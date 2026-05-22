@@ -5,13 +5,15 @@ Period defaults and CLI wiring live in fng_backtest_with_binance_tp; this module
 only performs the HTTP fetch and file write when called with explicit parameters.
 """
 
+import path_setup  # noqa: F401, E402
+
 import argparse
 import json
 from pathlib import Path
 from typing import Optional, Union
 
-from backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
-from core.data_fetch import fetch_fear_greed_chart
+from fng_trading.backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
+from fng_trading.core.data_fetch import fetch_fear_greed_chart
 
 PathLike = Union[str, Path]
 

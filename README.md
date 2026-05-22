@@ -55,10 +55,15 @@ fng_trading/
 └── tests/
 ```
 
-**執行 `python -m fng_trading...`**：套件名為 `fng_trading`，請在專案根目錄設定父目錄至 `PYTHONPATH`（`run_fng_daily_cron.sh` 會自動處理）：
+**執行與路徑**：程式內統一使用 `from fng_trading.core...` 匯入。專案根目錄名為 `fng_trading/`，在其**內部**執行時需讓 Python 能找到套件名 `fng_trading`（見下方路徑方案）。
 
 ```bash
 cd /path/to/fng_trading
+
+# 回測（專案根目錄；backtest 入口會 import path_setup）
+python3 -m backtest.fng_backtest_with_binance_tp
+
+# 實盤 / cron：用完整套件路徑（run_fng_daily_cron.sh 已設 PYTHONPATH）
 export PYTHONPATH="$(dirname "$(pwd)"):${PYTHONPATH:-}"
 python3 -m fng_trading.trade.fng_daily_trader
 ```

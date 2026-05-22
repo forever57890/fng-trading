@@ -1,3 +1,5 @@
+import path_setup  # noqa: F401, E402
+
 import argparse
 import json
 from datetime import datetime, timedelta, timezone
@@ -7,11 +9,11 @@ from typing import Optional
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
-from backtest.fear_greed_chart_fetch import fetch_fear_greed_chart_to_file
-from core.data_fetch import fetch_binance_futures_klines, load_fear_greed_from_file
-from core.fng_signal import filter_daily_midnight_rows, parse_fear_greed_rows
-from core.strategy_logic import apply_trade_logic, get_position
+from fng_trading.backtest.backtest_io import FEAR_GREED_CHART_PATH, ensure_test_data_dir
+from fng_trading.backtest.fear_greed_chart_fetch import fetch_fear_greed_chart_to_file
+from fng_trading.core.data_fetch import fetch_binance_futures_klines, load_fear_greed_from_file
+from fng_trading.core.fng_signal import filter_daily_midnight_rows, parse_fear_greed_rows
+from fng_trading.core.strategy_logic import apply_trade_logic, get_position
 
 SYMBOL = "BTCUSDT"
 INTERVAL = "1d"

@@ -7422,15 +7422,15 @@
     {
         "open_time":"2026-05-22T00:00:00.000Z",
         "open":77586.3,
-        "high":77775.0,
+        "high":77862.7,
         "low":77288.0,
-        "close":77744.2,
-        "volume":7187.65,
+        "close":77610.0,
+        "volume":10113.459,
         "close_time":"2026-05-22T23:59:59.999Z",
-        "quote_volume":"557314402.44610",
-        "trade_count":238885,
-        "taker_buy_base_volume":"3900.664",
-        "taker_buy_quote_volume":"302466502.58810",
+        "quote_volume":"784780396.61110",
+        "trade_count":304076,
+        "taker_buy_base_volume":"5227.520",
+        "taker_buy_quote_volume":"405641074.98560",
         "ignore":"0"
     }
 ]
