@@ -1,12 +1,12 @@
 {
-    "total_trades": 154,
-    "wins": 93,
-    "losses": 61,
-    "win_rate": 0.6038961038961039,
-    "tp_hits": 23,
-    "tp_hit_rate": 0.14935064935064934,
-    "net_pnl": 69309.15725934,
+    "total_trades": 276,
+    "wins": 154,
+    "losses": 122,
+    "win_rate": 0.5579710144927537,
+    "tp_hits": 45,
+    "tp_hit_rate": 0.16304347826086957,
+    "net_pnl": 74316.23922275004,
     "max_profit": 5233.28269478,
     "max_loss": -6085.848252500009,
-    "max_drawdown": -16920.948257
+    "max_drawdown": -35402.658198260026
 }

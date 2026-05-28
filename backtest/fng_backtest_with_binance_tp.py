@@ -20,7 +20,7 @@ INTERVAL = "1d"
 _BACKTEST_ROOT = Path(__file__).resolve().parent
 
 # --- backtest period (passed into fear_greed_chart_fetch when fetching) ---
-DEFAULT_START = "2025-01-07 00:00:00"
+DEFAULT_START = "2025-05-26 00:00:00"
 DEFAULT_END = "2026-05-30 23:59:59"
 DEFAULT_CONVERT_ID = 2781
 FNG_FETCH_BUFFER_DAYS = 2
